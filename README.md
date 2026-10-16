@@ -12,6 +12,8 @@ assets/img/         isotipo.svg y favicon.svg (extraídos del Manual de Marca), 
 
 Vista local: `python3 -m http.server` y abrir http://localhost:8000.
 
+Publicado en GitHub Pages desde la rama `master` (raíz). Mientras sea vista previa, las páginas llevan `<meta name="robots" content="noindex">`: quitarlo al lanzar.
+
 ## Pendiente del cliente
 
 Buscar `PLACEHOLDER` en los HTML. Además:
