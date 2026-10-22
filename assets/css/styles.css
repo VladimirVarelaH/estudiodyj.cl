@@ -408,10 +408,10 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px
 /* ---------- Áreas ---------- */
 .cards {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
-/* 4 → 2 → 1 columnas: nunca queda una tarjeta huérfana ni columnas demasiado angostas */
+/* 3 → 2 → 1 columnas: con 6 áreas nunca queda una tarjeta huérfana */
 @media (max-width: 1080px) { .cards { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) { .cards { grid-template-columns: 1fr; } }
 .card {
@@ -423,6 +423,8 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px
   border-radius: var(--radius);
 }
 /* El enlace queda al pie aunque las tarjetas tengan listas de distinto largo */
+/* Subgrupo dentro de una tarjeta (p. ej. "Si usted es empleador") */
+.card-sub { margin-top: 6px; font-weight: 600; font-size: 0.9375rem; color: var(--petroleo-profundo); }
 .card-link { margin-top: auto; padding-top: 10px; font-size: 0.9375rem; }
 .card-tag { color: var(--petroleo); font-size: 0.6875rem; }
 .card h3 { color: var(--petroleo-profundo); }
@@ -561,12 +563,13 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px
 /* ---------- Equipo ---------- */
 .team {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /* Una persona por fila: las biografías tienen largos distintos y así cada tarjeta toma su altura */
+  grid-template-columns: 1fr;
   gap: 28px;
 }
 .person {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
   background: var(--marfil);
   border: 1px solid var(--linea);
   border-radius: var(--radius);
@@ -580,11 +583,12 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Rostros algo a la izquierda del centro en las fotos actuales */
-  object-position: 40% 20%;
+  /* Cada foto define --focus-x según dónde está el rostro */
+  object-position: var(--focus-x, 50%) 25%;
   background: var(--petroleo);
 }
-.person-body { display: flex; flex-direction: column; gap: 12px; padding: 28px 26px; }
+.person-body { display: flex; flex-direction: column; gap: 12px; padding: 32px clamp(26px, 3vw, 44px); }
+.person-body > * { max-width: 68ch; }
 .person h3 { font-size: 1.375rem; font-weight: 500; }
 .person-role { margin-top: -6px; color: var(--petroleo); font-weight: 500; font-size: 0.9375rem; }
 .person-facts { display: grid; gap: 12px; margin: 6px 0 0; }
@@ -599,10 +603,10 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px
 }
 .person .text-link { margin-top: auto; padding-top: 4px; font-size: 0.9375rem; }
 
-/* Tablet: una persona por fila, con la foto al lado */
+/* Tablet: las biografías son altas y la foto lateral quedaría muy ampliada; va arriba en apaisado */
 @media (max-width: 1060px) {
-  .team { grid-template-columns: 1fr; }
-  .person { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); }
+  .person { grid-template-columns: 1fr; }
+  .person picture { min-height: 0; aspect-ratio: 16 / 9; }
 }
 @media (max-width: 600px) {
   .person { grid-template-columns: 1fr; }
