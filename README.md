@@ -7,7 +7,7 @@ index.html          Portada, áreas de práctica, cómo trabajamos + preguntas f
 privacidad.html     Política de privacidad (Ley 19.628, modificada por la Ley 21.719) y aviso legal
 assets/css/styles.css
 assets/js/main.js   Menú móvil, video bajo demanda, áreas → formulario, formulario → WhatsApp
-assets/img/         Logo (isotipo.svg, favicon.svg), og-image.png, fotos de portada y del equipo
+assets/img/         Logo (isotipo.svg, favicon.svg), og-image.png, fotos de portada (tribunales-*) y del equipo
 resources/          Material de trabajo (manual de marca, originales). Ignorado por git
 ```
 
