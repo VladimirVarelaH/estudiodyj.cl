@@ -8,6 +8,8 @@ privacidad.html     Política de privacidad (Ley 19.628, modificada por la Ley 2
 assets/css/styles.css
 assets/js/main.js   Menú móvil, video bajo demanda, áreas → formulario, formulario → WhatsApp
 assets/img/         Logo (isotipo.svg, favicon.svg), og-image.png, fotos de portada (tribunales-*) y del equipo
+robots.txt, sitemap.xml
+CNAME               Dominio de GitHub Pages (lo creó GitHub al configurar estudiodyj.cl)
 resources/          Material de trabajo (manual de marca, originales). Ignorado por git
 ```
 
@@ -17,7 +19,7 @@ resources/          Material de trabajo (manual de marca, originales). Ignorado 
 python3 -m http.server     # http://localhost:8000
 ```
 
-Se publica en GitHub Pages desde la raíz de la rama `master`: cada `git push` actualiza https://vladimirvarelah.github.io/estudiodyj.cl/ en uno o dos minutos. `.nojekyll` hace que los archivos se sirvan tal cual.
+Se publica en GitHub Pages desde la raíz de la rama `master`: cada `git push` actualiza https://estudiodyj.cl en uno o dos minutos. Antes de hacer push, `git pull --rebase` por si GitHub modificó `CNAME`. `.nojekyll` hace que los archivos se sirvan tal cual.
 
 ## Cómo editar lo más común
 
@@ -32,16 +34,12 @@ Se publica en GitHub Pages desde la raíz de la rama `master`: cada `git push` a
 - **Video**: el id de YouTube aparece tres veces en `index.html` (`data-video-id`, el enlace y la miniatura). El iframe solo se carga al hacer clic, en `youtube-nocookie.com` y con subtítulos activados.
 - **Imagen para redes** (`og-image.png`, 1200×630): logo vertical centrado, para que sobreviva al recorte cuadrado de WhatsApp.
 
-## Antes de lanzar
+## Pendiente
 
-1. **Quitar `noindex`**: ambas páginas llevan `<meta name="robots" content="noindex">` mientras el sitio sea vista previa.
-2. **Conectar el dominio**: crear registros `A` hacia 185.199.108.153, 185.199.109.153, 185.199.110.153 y 185.199.111.153, y luego:
-   ```sh
-   gh api -X PUT repos/VladimirVarelaH/estudiodyj.cl/pages -f cname=estudiodyj.cl
-   ```
-   Activar HTTPS en la configuración de Pages. `canonical`, `og:url` y `og:image` ya apuntan a `https://estudiodyj.cl/`, así que las vistas previas al compartir solo funcionarán con el dominio conectado.
-3. **Revisión legal**: el estudio debe validar el texto completo de `privacidad.html`.
-4. **Secciones ocultas**: el video de presentación (`#conocenos`) y la ubicación de la oficina en Contacto están comentados en `index.html`. Al reactivar el video, reemplazar el id provisorio `IyIjYuF_HUo`. La oficina debe coincidir con el domicilio de la política de privacidad, o indicar dónde se atiende si es otro lugar.
+1. **Revisión legal**: el estudio debe validar el texto completo de `privacidad.html`.
+2. **Video de presentación** (previsto para la semana del 2 de noviembre de 2026): la sección `#conocenos` está comentada en `index.html`. Al publicarla, quitar el comentario y reemplazar el id provisorio `IyIjYuF_HUo` en sus tres apariciones (`data-video-id`, enlace y miniatura).
+3. **Oficina**: la ubicación en Contacto también está comentada. Al mostrarla, debe coincidir con el domicilio de la política de privacidad (Grajales 2335, Santiago) o indicar dónde se atiende si es otro lugar.
+4. **Google Search Console**: verificar el dominio y enviar `https://estudiodyj.cl/sitemap.xml` para que Google indexe el sitio más rápido. Al cambiar contenido, actualizar `<lastmod>` en `sitemap.xml`.
 
 ## Notas
 

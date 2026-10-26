@@ -1,1 +1,13 @@
 /resources/*
+estudiodyj.cl.txt
+
+# Documentación para el cliente (LaTeX) y archivos de compilación
+*.tex
+*.pdf
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fdb_latexmk
+*.fls
